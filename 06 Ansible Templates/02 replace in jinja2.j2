@@ -1,0 +1,51 @@
+There is a template named /home/bob/playbooks/replace/templates/name.txt.j2 on student-node. 
+Similarly, there is a playbook named /home/bob/playbooks/replace/playbook.yml on student-node itself.
+
+
+
+Update this playbook to generate a file named /tmp/name.txt on student-node from the given jinja2 template,
+and make sure to fix the dialogue where string Bourne must be replaced with string Bond.
+
+SOL:
+
+Edit /home/bob/playbooks/replace/templates/name.txt.j2 template:
+
+
+vi /home/bob/playbooks/replace/templates/name.txt.j2
+
+
+
+Update it as below:
+
+
+{{ dialogue | replace('Bourne', 'Bond') }}
+
+
+
+Edit the /home/bob/playbooks/replace/playbook.yml playbook.
+
+
+vi /home/bob/playbooks/replace/playbook.yml
+
+
+
+Update it as below:
+
+
+---
+- hosts: localhost
+  connection: local
+  vars:
+    dialogue: "The name is Bourne, James Bourne!"
+  tasks:
+    - template:
+        src: name.txt.j2
+        dest: /tmp/name.txt
+
+
+
+Execute the playbook:
+
+
+cd /home/bob/playbooks/replace/
+ansible-playbook -i inventory playbook.yml
