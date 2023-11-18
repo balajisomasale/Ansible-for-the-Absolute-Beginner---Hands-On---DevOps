@@ -1,0 +1,34 @@
+Create an Ansible inventory file called inventory for host node01 under /home/bob/playbooks directory.
+
+
+
+Below are the details of node01:
+
+
+Hostname: node01
+
+User: bob
+
+Password: caleston123
+
+SOL:
+
+Create an inventory file:
+
+
+vi /home/bob/playbooks/inventory
+
+
+
+Add below content in this file:
+
+
+node01 ansible_host=node01 ansible_ssh_pass=caleston123
+
+
+
+You can test it out using Ansible ping:
+
+
+cd /home/bob/playbooks
+ansible -i inventory node01 -m ping -v
