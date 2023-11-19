@@ -1,0 +1,31 @@
+Create a playbook called /home/bob/playbooks/command.yml which should execute the command 
+to display the contents of file /etc/resolv.conf on localhost. 
+Make sure to use command module to complete this task.
+
+SOL:
+
+Run below command:
+
+
+vi /home/bob/playbooks/command.yml
+
+
+
+Add below contents in it:
+
+
+---
+- name: Execute a command on localhost
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Execute a command
+      command: cat /etc/resolv.conf
+
+
+
+Try to run the playbook:
+
+
+cd /home/bob/playbooks
+ansible-playbook -i localhost, command.yml -vv
