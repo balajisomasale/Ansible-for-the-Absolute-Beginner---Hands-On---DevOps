@@ -1,0 +1,12 @@
+Create a playbook called file.yml under /home/bob/playbooks/ directory and 
+use this playbook to create a file called /opt/file.txt on node01 host. 
+The contents of the file must be This file is created by Ansible!
+
+SOL:
+---
+- name: Create File playbook
+  hosts: node01
+  become: True
+  tasks:
+    - name: Create a file task
+      shell: 'echo "This file is created by Ansible!" >> /opt/file.txt'
